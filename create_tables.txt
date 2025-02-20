@@ -1,0 +1,31 @@
+CREATE TABLE artists (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    followers INTEGER,
+    genres TEXT,
+    popularity INTEGER
+);
+
+CREATE TABLE albums (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    artist_id TEXT REFERENCES artists(id),
+    release_date DATE,
+    total_tracks INTEGER
+);
+
+CREATE TABLE tracks (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    album_id TEXT REFERENCES albums(id),
+    artist_id TEXT REFERENCES artists(id),
+    popularity INTEGER,
+    duration_ms INTEGER
+);
+
+CREATE TABLE playlists (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    owner TEXT,
+    total_tracks INTEGER
+);
